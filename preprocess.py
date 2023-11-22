@@ -4,20 +4,27 @@ from google.oauth2 import service_account
 import pandas as pd
 from google.cloud.exceptions import NotFound
 
-# Your BigQuery project ID, dataset ID, and table ID
+# Change the BigQuery project ID, dataset ID, and table ID according to your project details
+# No need to create a table before it will create automcatically, if it exists it won't create
 project_id = 'etl-streaming-402314'
 dataset_id = 'pubsub_dataset'
-table_id = 'puzzle_cleaned_v5'
-count=0
+table_id = 'puzzle_cleaned_v6'
 
 # Initialize BigQuery client
 bigquery_client = bigquery.Client(project=project_id)
 
-# Read your CSV file into a DataFrame
-puzzle_csv = pd.read_csv('/home/filepath/puzzleSample.csv')
+# Read your CSV file into a DataFrame and give the path to your file location
+
+puzzle_csv = pd.read_csv('/path to file/puzzle_prepocess/puzzleSample.csv')
 
 # Define the schema of your BigQuery table
 schema = [
+    bigquery.SchemaField("documentType", "STRING", mode="NULLABLE"),
+
+    bigquery.SchemaField("customerId", "STRING", mode="NULLABLE"),
+
+    bigquery.SchemaField("documentId", "STRING", mode="NULLABLE"),
+
     bigquery.SchemaField("Ultimate Parent", "RECORD", mode="REPEATED", fields=[
         bigquery.SchemaField("Ultimate Parent", "STRING", mode="NULLABLE"),
         bigquery.SchemaField("document_id", "STRING", mode="NULLABLE"),
@@ -102,6 +109,9 @@ rows_to_insert = []
 
 for _, row in puzzle_csv.iterrows():
     document_data = {
+        "documentType": row["documentType"],
+        "customerId": row["customerId"],
+        "documentId": row["documentId"],
         "Ultimate Parent": [],
         "Immediate Parent": [],
         "Subject": [],
