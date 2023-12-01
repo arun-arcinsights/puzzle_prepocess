@@ -8,14 +8,14 @@ from google.cloud.exceptions import NotFound
 # No need to create a table before it will create automcatically, if it exists it won't create
 project_id = 'etl-streaming-402314'
 dataset_id = 'pubsub_dataset'
-table_id = 'puzzle_cleaned_v6'
+table_id = 'puzzle_cleaned_v7'
 
 # Initialize BigQuery client
 bigquery_client = bigquery.Client(project=project_id)
 
 # Read your CSV file into a DataFrame and give the path to your file location
 
-puzzle_csv = pd.read_csv('/path to file/puzzle_prepocess/puzzleSample.csv')
+puzzle_csv = pd.read_csv('/home/vyshnavimyana72/puzzle_prepocess/puzzleSample.csv')
 
 # Define the schema of your BigQuery table
 schema = [

@@ -1,0 +1,27 @@
+nonlive:
+  compute_project_id: vf-uk-nwp-nonlive
+  datahub_project_id: vf-uk-nwp-nonlive
+  csv_files_path: vf-uk-nwp-nonlive-prp-beacon/puzzle_code/puzzleSample.csv
+  spark_output_bucket: vf-uk-nwp-nonlive-prp-beacon
+  code_bucket: vf-uk-nwp-nonlive-prp-beacon
+  main_python_file_uri: puzzle_code/puzzle_preprocess_pyspark_v3.py
+  service_account: vf-uk-nwp-prp-beacon-dp-ops-sa@vf-uk-nwp-nonlive.iam.gserviceaccount.com
+  subnetwork_uri: projects/vf-uk-nwp-nonlive/regions/europe-west2/subnetworks/prp-beacon-restricted-zone
+  spark_jar: gs://vf-uk-nwp-nonlive-prp-beacon/spark-jars/spark-bigquery-with-dependencies_2.12-0.28.0.jar
+  bq_table: puzzle_cleaned_pyspark_v2
+  bq_datasetid: vfuk_dh_lake_all_rawprepared_s
+  subnet_tags: ['allow-internal-dataproc-prp-beacon', 'allow-ssh-from-management-zone-prp-beacon']
+
+live:
+  compute_project_id: vf-uk-nwp-nonlive
+  datahub_project_id: vf-uk-nwp-nonlive
+  csv_files_path: vf-uk-nwp-nonlive-prp-beacon/puzzle_code/puzzleSample.csv
+  spark_output_bucket: vf-uk-nwp-nonlive-prp-beacon
+  code_bucket: vf-uk-nwp-nonlive-prp-beacon
+  main_python_file_uri: puzzle_code/puzzle_preprocess_pyspark_v1.py
+  service_account: vf-uk-nwp-prp-beacon-dp-ops-sa@vf-uk-nwp-nonlive.iam.gserviceaccount.com
+  subnetwork_uri: projects/vf-uk-nwp-nonlive/regions/europe-west2/subnetworks/prp-beacon-restricted-zone
+  spark_jar: gs://vf-uk-nwp-nonlive-prp-beacon/spark-jars/spark-bigquery-with-dependencies_2.12-0.28.0.jar
+  bq_table: puzzle_cleaned_pyspark_v2
+  bq_datasetid: vfuk_dh_lake_all_rawprepared_s
+  subnet_tags: ['allow-internal-dataproc-prp-beacon', 'allow-ssh-from-management-zone-prp-beacon']
